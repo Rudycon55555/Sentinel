@@ -1,0 +1,66 @@
+[package]
+name = "sentinel"
+version = "0.1.0"
+edition = "2021"
+authors = ["Your Name"]
+description = "Sentinel — A modular, secure, full-stack system development framework in Rust."
+license = "MIT"
+
+# -----------------------------------------
+# Dependencies for ALL Sentinel layers
+# -----------------------------------------
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde_yaml = "0.9"
+quick-xml = "0.31"
+
+sha2 = "0.10"
+argon2 = "0.5"
+rand = "0.8"
+
+aes-gcm = "0.10"
+
+lazy_static = "1.4"
+
+# -----------------------------------------
+# Tauri (Frontend)
+# -----------------------------------------
+tauri = { version = "1.5", features = ["api-all"] }
+
+# -----------------------------------------
+# Async + utilities (optional but useful)
+# -----------------------------------------
+tokio = { version = "1.36", features = ["full"] }
+
+# -----------------------------------------
+# Logging (optional but recommended)
+# -----------------------------------------
+log = "0.4"
+env_logger = "0.11"
+
+# -----------------------------------------
+# File system + paths
+# -----------------------------------------
+walkdir = "2.5"
+
+# -----------------------------------------
+# Optional: SQL support (future expansion)
+# -----------------------------------------
+sqlx = { version = "0.7", features = ["sqlite", "runtime-tokio-native-tls"], optional = true }
+
+# -----------------------------------------
+# Optional: Template engine helpers
+# -----------------------------------------
+regex = "1.10"
+
+# -----------------------------------------
+# Features
+# -----------------------------------------
+[features]
+default = ["frontend", "backend", "middlend"]
+
+frontend = ["tauri"]
+backend = []
+middlend = []
+sql = ["sqlx"]
